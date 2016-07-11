@@ -1,0 +1,65 @@
+O projeto GraphProblem criado para processo de recrutamento da TW.
+Por Lorena.
+Projeto Maven criado por meio do Eclipse.
+
+Classe que inicia a execução do projeto:
+br.com.tw.lorena.graphProblem.App.java
+
+Class Model de representação da cidade, da rota entre uma cidade e de todos os caminhos entre cidades:
+br.com.tw.lorena.graphProblem.Town.java
+br.com.tw.lorena.graphProblem.Edje.java
+br.com.tw.lorena.graphProblem.Graph.java
+
+Estrutura de dados central definida para represetar o grafo cíclico foi Lista de Adjacência, em:
+br.com.tw.lorena.graphProblem.Town.java
+
+Class Control, classes que contém algoritmos de busca que percorre sobre o Grafo, implementado com base em conceitos da literatura:
+br.com.tw.lorena.graphProblem.GraphSearchAlgorithms.java
+
+Class View de comunicação e interação com o usuário:
+br.com.tw.lorena.graphProblem.Menu.java
+br.com.tw.lorena.graphProblem.View.java
+br.com.tw.lorena.graphProblem.ResourseProperty.java
+
+Class Validation afim de validar entradas de dados e rota válida:
+br.com.tw.lorena.graphProblem.Validation.java
+
+Explicações adicionais:
+
+- Entrada de Dados por meio de arquivo
+
+O arquivo graphOfTown.txt contém a representação do Grafo, no seguinte modelo:
+AB5 AE7 AD5
+BC4
+CD8 CE2
+DC8 DE6
+EB3
+
+Em que o arquivo está organizado assim, cada linha representa as possíveis rotas de uma cidade.
+Por exemplo, a primeira linha acima, AB5 AE7 AD5, da cidade A até a B tem distância 5,
+da cidade A até a E tem distância 7, da cidade A até a D tem distância 5. 
+Se for para adicionar mais uma cidade saindo de A, por exemplo C com distancia 10, deveria ficar:
+AB5 AE7 AD5 AC10
+
+A localização do arquivo deve está em src/graphOfTown.txt
+
+--------------------------------------------------------------------------
+
+- Algoritmos usados
+Para a função de pegar o menor caminho entre dois pontos foi criado a implentação baseado no
+algoritmo do caminho mínimo Dijkistra.
+Para a função de pegar todos os caminhos entre duas cidades foi criado a implementação baseado no
+algoritmo de busca por profundidade limitada.
+
+---------------------------------------------------------------------------
+
+- Execução do Projeto
+
+Por Eclipse:
+Crie um projeto Maven simples, com:
+groupId: br.com.tw.lorena
+artifactId: GraphProblem
+Importe o código fonte para br.com.tw.lorena.graphProblem.
+Importe o arquivo graphProblem.properties para br.com.tw.lorena.resource.
+Importe o arquivo src/graphOfTown.txt
+Em App.java, execute o projeto.
