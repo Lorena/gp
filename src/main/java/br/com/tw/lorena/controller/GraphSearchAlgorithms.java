@@ -17,8 +17,8 @@ import br.com.tw.lorena.view.Printer;
  * */
 public class GraphSearchAlgorithms {
 	
-	private Stack<Town> townsStack = new Stack<>();
-	private  ArrayList<Town> visitedTowns = new ArrayList<>();
+	private Stack<Town> townsStack = new Stack<Town>();
+	private  ArrayList<Town> visitedTowns = new ArrayList<Town>();
 	private int numberOfTrips = 0;
 	
 
