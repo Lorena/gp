@@ -39,7 +39,7 @@ public class GraphSearchAlgorithmsTest extends TestCase {
 	
 	public void testExecutaCalculateLengthShortestRouteBetweenTwoTowns(){
 		
-		GraphSearchAlgorithms g = new GraphSearchAlgorithms();
+//		GraphSearchAlgorithmsLixo g = new GraphSearchAlgorithmsLixo();
 		Town townStart = A;
 		Town townGoal = C;
 		List<Town> pathWaited = new ArrayList<Town>();
@@ -55,7 +55,7 @@ public class GraphSearchAlgorithmsTest extends TestCase {
 	
 	public void testExecutaGetFinalDistanceOfTowns(){
 	
-		GraphSearchAlgorithms g = new GraphSearchAlgorithms();
+//		GraphSearchAlgorithmsLixo g = new GraphSearchAlgorithmsLixo();
 	
 		List<Town> path = new ArrayList<Town>();
         path.add(A);

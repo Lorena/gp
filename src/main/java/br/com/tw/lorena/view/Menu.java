@@ -6,7 +6,10 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.tw.lorena.controller.GraphSearchAlgorithms;
+import br.com.tw.lorena.controller.CalculaterPathBetweenTwoNodesAlgorithms;
+import br.com.tw.lorena.controller.DeephtSearchLimitedAlgorithms;
+import br.com.tw.lorena.controller.DijkistraAlgorithms;
+import br.com.tw.lorena.controller.StrategyGraphSearchAlgorithms;
 import br.com.tw.lorena.controller.Validator;
 import br.com.tw.lorena.model.Graph;
 import br.com.tw.lorena.model.Town;
@@ -15,7 +18,7 @@ import br.com.tw.lorena.model.Town;
  * @author Lorena
  * Classe de Menu.
  * */
-public class Menu extends GraphSearchAlgorithms {
+public class Menu {
 
 
 	protected void showMenuOption(){
@@ -44,35 +47,21 @@ public class Menu extends GraphSearchAlgorithms {
 	protected void executeMenuOption(int viewNumber){
 		List<Town> town = new ArrayList<Town>();
         town = getTwoOrMoreThanTwoTowns();
+        
+        StrategyGraphSearchAlgorithms strategyAlgorithms = null;
+        
 		if (viewNumber == 1) //DONE!
-			menuOne(town);
+		    strategyAlgorithms = new CalculaterPathBetweenTwoNodesAlgorithms(town);
         else if (viewNumber == 2) //DONE!
-        	menuTwo(town);
+        	strategyAlgorithms = new DijkistraAlgorithms(town);
         else if (viewNumber == 3) //DONE!
-        	menuThree(town);
+        	strategyAlgorithms = new DeephtSearchLimitedAlgorithms(town, "stop");
         else if (viewNumber == 4) //DONE!
-        	menuFour(town);
+        	strategyAlgorithms = new DeephtSearchLimitedAlgorithms(town, "dist");
+        	
+		strategyAlgorithms.execute(town);
     }
 	
-	private String getCondition(String distanceStop){
-		String condition = null;
-        BufferedReader in = new BufferedReader(new InputStreamReader (System.in));
-        do{
-        	Printer.printDistanceStopModelExemplo(distanceStop);
-            try {
-	        	condition = in.readLine();
-	        	condition = condition.replace(" ", "");
-	        	int number = Integer.parseInt(condition.substring(5));
-	        	number=number+1;
-	        	condition = condition.substring(0, 5) + number; 
-			} catch (IOException e) {
-		         Printer.printErrCondition();
-			} catch (NumberFormatException e) {
-		         Printer.printErrEnterWithNumber();
-			}
-	    }while(!Validator.isCodition(condition,distanceStop));
-        return condition;
-	}
 	
 	private List<Town> getTwoOrMoreThanTwoTowns(){
 		String townsInput = null;
@@ -106,36 +95,5 @@ public class Menu extends GraphSearchAlgorithms {
 		}
 		return null;		
 	}
-
-	private void menuOne(List<Town> town){
-    	if(town.size()>=2)
-    		calculateDistanceOfTowns(town);
-    	else
-    		Printer.printFormatAtLeastTwoTown();
-	}
-
-	private void menuTwo(List<Town> town){
-    	if(town.size()==2)
-    		calculateLengthShortestRouteBetweenTwoTowns(town.get(0), town.get(1));
-    	else
-    		Printer.printFormatTwoTown();
-	}
-	
-	private void menuThree(List<Town> town){
-    	if(town.size()==2){
-        	String condition = getCondition("stop");
-        	showTheNumberOfTripsBetweenTownsWithCondition(town, condition);
-    	}else
-    		Printer.printFormatTwoTown();
-	}
-	
-	private void menuFour(List<Town> town){
-    	if(town.size()==2){
-        	String condition = getCondition("dist");
-        	showTheNumberOfTripsBetweenTownsWithCondition(town, condition);
-    	}else
-    		Printer.printFormatTwoTown();
-	}
-
 
 }

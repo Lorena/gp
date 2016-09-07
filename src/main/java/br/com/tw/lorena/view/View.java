@@ -18,8 +18,6 @@ public class View extends Menu {
 	private static View instancia;  
 	private static final String PATH = new File("src/graphOfTown.txt").getAbsolutePath();
 	private static final int SAIR = 5;
-
-	
 	  
 	public static synchronized View getInstancia() throws FileNotFoundException, IOException {  
 	      if (instancia == null)  
