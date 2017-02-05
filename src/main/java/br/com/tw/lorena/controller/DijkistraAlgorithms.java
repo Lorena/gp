@@ -1,23 +1,21 @@
 package br.com.tw.lorena.controller;
 
+import br.com.tw.lorena.model.Edje;
+import br.com.tw.lorena.model.Town;
+import br.com.tw.lorena.view.Printer;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.PriorityQueue;
 
-import br.com.tw.lorena.model.Edje;
-import br.com.tw.lorena.model.Town;
-import br.com.tw.lorena.view.Printer;
+public class DijkistraAlgorithms {
 
-public class DijkistraAlgorithms extends StrategyGraphSearchAlgorithms {
 
-	public DijkistraAlgorithms(List<Town> towns) throws IOException {
-		super(towns);
-	}
+    private List<Town> towns;
 
-	@Override
-	public void execute(List<Town> towns) throws IOException {
+	public void execute() throws IOException {
 		calculateLengthShortestRouteBetweenTwoTowns(towns.get(0), towns.get(1));
 	}
 	
@@ -69,6 +67,8 @@ public class DijkistraAlgorithms extends StrategyGraphSearchAlgorithms {
         return path;
     }
 
-	
-	
+
+    public void setTowns(List<Town> towns) {
+        this.towns = towns;
+    }
 }

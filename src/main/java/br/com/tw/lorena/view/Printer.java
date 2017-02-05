@@ -27,7 +27,7 @@ public class Printer {
 	    
 	}
 	
-	public static void printMenu() throws IOException {
+	public void printMenu() throws IOException {
 		System.out.println(ResourseProperty.getProperty("choose_number"));
 		System.out.println(ResourseProperty.getProperty("menu_one"));
 		System.out.println(ResourseProperty.getProperty("menu_two"));
@@ -93,10 +93,6 @@ public class Printer {
 	
 	public static void printErrCondition(){
 		System.err.println("IO error trying to read the condition!");
-	}
-
-	public static void printMissingData(String name){
-		System.err.println("WARNING: missing data: " + name);
 	}
 
 }

@@ -1,4 +1,4 @@
-package br.com.tw.lorena.GraphProblem;
+package br.com.tw.lorena.controller;
 
 import junit.framework.TestCase;
 

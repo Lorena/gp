@@ -8,14 +8,15 @@ import br.com.tw.lorena.model.Edje;
 import br.com.tw.lorena.model.Town;
 import br.com.tw.lorena.view.Printer;
 
-public class CalculaterPathBetweenTwoNodesAlgorithms extends StrategyGraphSearchAlgorithms {
+public class CalculaterPathBetweenTwoNodesAlgorithms {
 
-	public CalculaterPathBetweenTwoNodesAlgorithms(List<Town> towns) throws IOException {
-		super(towns);
+	private List<Town> towns;
+
+	public void setTowns(List<Town> towns) {
+		this.towns = towns;
 	}
 
-	@Override
-	public void execute(List<Town> towns) throws IOException {
+	public void execute() throws IOException {
 		calculateDistanceOfTowns(towns);
 	}
 	
