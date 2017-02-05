@@ -21,12 +21,12 @@ import br.com.tw.lorena.model.Town;
 public class Menu {
 
 
-	protected void showMenuOption(){
+	protected void showMenuOption() throws IOException {
 		Printer.printMenu();
 		
 	}
 	
-	protected int getTheMenuOption(){
+	protected int getTheMenuOption() throws IOException {
     	BufferedReader in = new BufferedReader (
                 new InputStreamReader (System.in));
     	int op = 0;
@@ -44,7 +44,7 @@ public class Menu {
     	return op;
     }
 	
-	protected void executeMenuOption(int viewNumber){
+	protected void executeMenuOption(int viewNumber) throws IOException {
 		List<Town> town = new ArrayList<Town>();
         town = getTwoOrMoreThanTwoTowns();
         
@@ -63,7 +63,7 @@ public class Menu {
     }
 	
 	
-	private List<Town> getTwoOrMoreThanTwoTowns(){
+	private List<Town> getTwoOrMoreThanTwoTowns() throws IOException {
 		String townsInput = null;
         BufferedReader in = new BufferedReader(new InputStreamReader (System.in));
         

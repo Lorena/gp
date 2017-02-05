@@ -1,5 +1,6 @@
 package br.com.tw.lorena.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,16 +10,16 @@ import br.com.tw.lorena.view.Printer;
 
 public class CalculaterPathBetweenTwoNodesAlgorithms extends StrategyGraphSearchAlgorithms {
 
-	public CalculaterPathBetweenTwoNodesAlgorithms(List<Town> towns) {
+	public CalculaterPathBetweenTwoNodesAlgorithms(List<Town> towns) throws IOException {
 		super(towns);
 	}
 
 	@Override
-	public void execute(List<Town> towns) {
+	public void execute(List<Town> towns) throws IOException {
 		calculateDistanceOfTowns(towns);
 	}
 	
-	protected void calculateDistanceOfTowns(List<Town> town){
+	protected void calculateDistanceOfTowns(List<Town> town) throws IOException {
 		if(Validator.checkRouteValidation(town, getValueOfRoute(town)))
 			Printer.printDistanceOfTowns(getFinalDistanceOfTowns(town));
 		else

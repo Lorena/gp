@@ -1,5 +1,6 @@
 package br.com.tw.lorena.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -11,16 +12,16 @@ import br.com.tw.lorena.view.Printer;
 
 public class DijkistraAlgorithms extends StrategyGraphSearchAlgorithms {
 
-	public DijkistraAlgorithms(List<Town> towns) {
+	public DijkistraAlgorithms(List<Town> towns) throws IOException {
 		super(towns);
 	}
 
 	@Override
-	public void execute(List<Town> towns) {
+	public void execute(List<Town> towns) throws IOException {
 		calculateLengthShortestRouteBetweenTwoTowns(towns.get(0), towns.get(1));
 	}
 	
-	protected void calculateLengthShortestRouteBetweenTwoTowns(Town startTown, Town goalTown){
+	protected void calculateLengthShortestRouteBetweenTwoTowns(Town startTown, Town goalTown) throws IOException {
 		 
         Town townStart = startTown; 
         Town townGoal = goalTown;

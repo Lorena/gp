@@ -1,16 +1,17 @@
 package br.com.tw.lorena.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import br.com.tw.lorena.model.Town;
 import br.com.tw.lorena.view.Printer;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class StrategyGraphSearchAlgorithms {
 	
 	List<Town> towns = new ArrayList<Town>();
 	
-	public StrategyGraphSearchAlgorithms (List<Town> towns){
+	public StrategyGraphSearchAlgorithms (List<Town> towns) throws IOException {
 		
 		if(!(towns.size()>=2))
 			Printer.printFormatAtLeastTwoTown();
@@ -18,6 +19,6 @@ public abstract class StrategyGraphSearchAlgorithms {
 		this.towns = towns;
 	}
 
-	public abstract void execute(List<Town> towns);
+	public abstract void execute(List<Town> towns) throws IOException;
 
 }

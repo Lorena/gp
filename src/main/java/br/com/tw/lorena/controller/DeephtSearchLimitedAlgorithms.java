@@ -1,15 +1,15 @@
 package br.com.tw.lorena.controller;
 
+import br.com.tw.lorena.model.Edje;
+import br.com.tw.lorena.model.Town;
+import br.com.tw.lorena.view.Printer;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
-
-import br.com.tw.lorena.model.Edje;
-import br.com.tw.lorena.model.Town;
-import br.com.tw.lorena.view.Printer;
 
 public class DeephtSearchLimitedAlgorithms extends StrategyGraphSearchAlgorithms {
 
@@ -18,18 +18,18 @@ public class DeephtSearchLimitedAlgorithms extends StrategyGraphSearchAlgorithms
 	private int numberOfTrips = 0;
 	private String conditionChoice;
 	
-	public DeephtSearchLimitedAlgorithms(List<Town> towns, String condition) {
+	public DeephtSearchLimitedAlgorithms(List<Town> towns, String condition) throws IOException {
 		super(towns);
 		this.conditionChoice = condition;
 	}
 
 	@Override
-	public void execute(List<Town> towns) {
+	public void execute(List<Town> towns) throws IOException {
 		String condition = getCondition(conditionChoice);
     	showTheNumberOfTripsBetweenTownsWithCondition(towns, condition);
 	}
 
-	 protected void showTheNumberOfTripsBetweenTownsWithCondition(List<Town> town, String condition) {
+	 protected void showTheNumberOfTripsBetweenTownsWithCondition(List<Town> town, String condition) throws IOException {
 			computerAllPathsDepthLimitedSearchWithCondition(town.get(0), town.get(1), condition);
 			numberOfTrips--;
 			Printer.printNumberOfTrips(numberOfTrips);
@@ -129,7 +129,7 @@ public class DeephtSearchLimitedAlgorithms extends StrategyGraphSearchAlgorithms
 		}
 
 
-		private String getCondition(String distanceStop){
+		private String getCondition(String distanceStop) throws IOException {
 			String condition = null;
 	        BufferedReader in = new BufferedReader(new InputStreamReader (System.in));
 	        do{

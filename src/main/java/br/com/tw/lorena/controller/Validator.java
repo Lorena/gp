@@ -1,10 +1,12 @@
 package br.com.tw.lorena.controller;
 
 
-import java.util.List;
 import br.com.tw.lorena.model.Graph;
 import br.com.tw.lorena.model.Town;
 import br.com.tw.lorena.view.Printer;
+
+import java.io.IOException;
+import java.util.List;
 
 /*
  * Class Singleton Validator.
@@ -13,19 +15,10 @@ import br.com.tw.lorena.view.Printer;
 
 public class Validator {
 	
-		private static Validator instancia;  
-		  
-		private Validator() {  
+		private Validator() {
 		  
 		}  
-		  
-		public static synchronized Validator getInstancia() {  
-		      if (instancia == null)  
-		         instancia = new Validator();  
-		      return instancia;  
-		}  
-		
-	
+
 		public static boolean isTown(String town){
 			for(Town t : Graph.townsGraph){
 				if(town.equals(t.name))
@@ -34,7 +27,7 @@ public class Validator {
 			return false;
 		}
 		
-		private static boolean hasNumberCondition (String number){
+		private static boolean hasNumberCondition (String number) throws IOException {
 			
 			for (int i = 0; i < number.length(); i++) {
 			        if (!Character.isDigit(number.charAt(i)))
@@ -46,7 +39,7 @@ public class Validator {
 			return true;
 		}
 	
-		public static boolean isCodition(String condition, String distanceStop){
+		public static boolean isCodition(String condition, String distanceStop) throws IOException {
 		
 			String clause = condition.substring(0, 5);
 			String number = condition.substring(5);

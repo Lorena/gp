@@ -1,18 +1,19 @@
 package br.com.tw.lorena.GraphProblem;
 
-import static org.junit.Assert.*;
-
+import br.com.tw.lorena.resource.ResourseProperty;
 import org.junit.Test;
 
-import br.com.tw.lorena.resource.ResourseProperty;
+import java.io.IOException;
+
+import static org.junit.Assert.assertEquals;
 
 public class ResoursePropertyTest {
 	
 	@Test 
-	public void findPropertyFileTest(){
-		String waited = "";
-		String returned = ResourseProperty.getProperty("nanananna");
-		assertEquals(waited, returned);
+	public void shouldFindPropertyInPropertyFileTest() throws IOException {
+		String waitedProperty = "Enter with tow towns.";
+		String returnedProperty = ResourseProperty.getProperty("enter_with_two_towns");
+		assertEquals(waitedProperty, returnedProperty);
 	}
 
 }

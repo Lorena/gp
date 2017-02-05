@@ -1,43 +1,35 @@
 package br.com.tw.lorena.resource;
 
-import java.io.FileNotFoundException;
+import br.com.tw.lorena.view.Printer;
+
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.MissingResourceException;
-import java.util.ResourceBundle;
-
-import br.com.tw.lorena.view.Printer;
+import java.util.Properties;
 
 public class ResourseProperty {
 
-	private ResourceBundle properties;
-	private static ResourseProperty instancia;  
-	
-	public static synchronized ResourseProperty getInstancia() throws FileNotFoundException, IOException {  
-	      if (instancia == null)  
-	         instancia = new ResourseProperty();  
-	      return instancia;  
-	}  
-	
-	public ResourseProperty() {
-		super();
-		try {
-			properties = ResourceBundle.getBundle("br.com.tw.lorena.resource.graphProblem");
-		} catch(MissingResourceException e) {
-			Printer.printNotFindFile();
-			System.exit(1);
-		}
+	private static Properties properties;
+
+	public ResourseProperty() throws IOException {
+		Properties props = new Properties();
+		FileInputStream file = new FileInputStream("src/main/java/br/com/tw/lorena/resource/graphProblem.properties");
+		props.load(file);
+		properties = props;
 	}
-	
-	 public static String getProperty(String name) {
-			String s = "";
+
+	public static Properties getProperties() {
+		return properties;
+	}
+
+	 public static String getProperty(String name) throws IOException {
+			String field = "";
 			try {
-				s = new ResourseProperty().properties.getString(name);
+				field = new ResourseProperty().getProperties().getProperty(name);
 			} catch (MissingResourceException e) {
 				Printer.printMissingData(name);
 			}
-			return s;
+			return field;
 		}
 
-	
-	
 }

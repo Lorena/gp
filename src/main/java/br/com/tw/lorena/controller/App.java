@@ -1,12 +1,12 @@
 package br.com.tw.lorena.controller;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import br.com.tw.lorena.view.View;
+
+import java.io.IOException;
 
 public class App 
 {
-	public static void main(String[] args) throws FileNotFoundException, IOException
+	public static void main(String[] args) throws IOException
     {
 		View view = new View();
     	view.executeProject();
