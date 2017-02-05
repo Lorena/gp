@@ -55,11 +55,41 @@ public class MenuTest {
     }
 
     @Test
-    public void shouldExecuteMenuOption() throws IOException {
+    public void shouldExecuteMenuOptionOne() throws IOException {
         Town townA = new Town("A");
         Town townB = new Town("B");
         menu.executeMenuOption(1, Arrays.asList(townA, townB));
         verify(calculaterPathBetweenTwoNodesAlgorithms, times(1)).setTowns(Arrays.asList(townA, townB));
         verify(calculaterPathBetweenTwoNodesAlgorithms, times(1)).execute();
+    }
+
+    @Test
+    public void shouldExecuteMenuOptionTwo() throws IOException {
+        Town townA = new Town("A");
+        Town townB = new Town("B");
+        menu.executeMenuOption(2, Arrays.asList(townA, townB));
+        verify(dijkistraAlgorithms, times(1)).setTowns(Arrays.asList(townA, townB));
+        verify(dijkistraAlgorithms, times(1)).execute();
+    }
+
+    @Test
+    public void shouldExecuteMenuOptionThree() throws IOException {
+        Town townA = new Town("A");
+        Town townB = new Town("B");
+        menu.executeMenuOption(3, Arrays.asList(townA, townB));
+        verify(deephtSearchLimitedAlgorithms, times(1)).setTowns(Arrays.asList(townA, townB));
+        verify(deephtSearchLimitedAlgorithms, times(1)).setConditionChoice("stop");
+        verify(deephtSearchLimitedAlgorithms, times(1)).execute();
+    }
+
+    @Test
+    public void shouldExecuteMenuOptionFour() throws IOException {
+        Town townA = new Town("A");
+        Town townB = new Town("B");
+        Town townC = new Town("C");
+        menu.executeMenuOption(4, Arrays.asList(townA, townB, townC));
+        verify(deephtSearchLimitedAlgorithms, times(1)).setTowns(Arrays.asList(townA, townB, townC));
+        verify(deephtSearchLimitedAlgorithms, times(1)).setConditionChoice("dist");
+        verify(deephtSearchLimitedAlgorithms, times(1)).execute();
     }
 }

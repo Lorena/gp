@@ -1,12 +1,12 @@
 package br.com.tw.lorena.controller;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
 import br.com.tw.lorena.model.Edje;
 import br.com.tw.lorena.model.Town;
 import br.com.tw.lorena.view.Printer;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CalculaterPathBetweenTwoNodesAlgorithms {
 
@@ -20,18 +20,18 @@ public class CalculaterPathBetweenTwoNodesAlgorithms {
 		calculateDistanceOfTowns(towns);
 	}
 	
-	protected void calculateDistanceOfTowns(List<Town> town) throws IOException {
+	private void calculateDistanceOfTowns(List<Town> town) throws IOException {
 		if(Validator.checkRouteValidation(town, getValueOfRoute(town)))
 			Printer.printDistanceOfTowns(getFinalDistanceOfTowns(town));
 		else
 			Printer.printNoRouch();
 	}
-	
+
 	private List<Double> getValueOfRoute(List<Town> route){
 		List<Double> routeValue = new ArrayList<Double>();
     	Town previous = route.get(0);
 		for (Town next : route){
-			for(Edje r : previous.adjacencies){
+			for(Edje r : previous.getAdjacencies()){
 				if(r.goalTown.equals(next)){
 					routeValue.add(new Double(r.distance));
 					break;
@@ -39,11 +39,9 @@ public class CalculaterPathBetweenTwoNodesAlgorithms {
 				}
 			previous = next;
 		}
-		
 		return routeValue;
-
 	}
-	
+
 	private double getFinalDistanceOfTowns(List<Town> town){
 		double value = 0.0;
 		List<Double> valueOfRoute = getValueOfRoute(town);
@@ -52,7 +50,5 @@ public class CalculaterPathBetweenTwoNodesAlgorithms {
 				value += v.doubleValue();
 		}
 		return value;
-		
 	}
-
 }

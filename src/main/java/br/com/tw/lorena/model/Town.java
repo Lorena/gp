@@ -5,10 +5,10 @@ import java.util.List;
 
 public class Town implements Comparable<Town>
 {
-    public final String name;
-    public List<Edje> adjacencies = new ArrayList<Edje>();
-    public double minDistance = Double.POSITIVE_INFINITY;
-    public Town previous;
+    private final String name;
+    private List<Edje> adjacencies = new ArrayList<Edje>();
+    private double minDistance = Double.POSITIVE_INFINITY;
+    private Town previous;
     
     public Town(String argName) { name = argName; }
     
@@ -24,12 +24,6 @@ public class Town implements Comparable<Town>
 	public List<Edje> getAdjacencies() {
 		return adjacencies;
 	}
-
-
-	public void setAdjacencies(List<Edje> adjacencies) {
-		this.adjacencies = adjacencies;
-	}
-
 
 	public double getMinDistance() {
 		return minDistance;
@@ -54,8 +48,5 @@ public class Town implements Comparable<Town>
 	public String getName() {
 		return name;
 	}
-
-
-    
 
 }

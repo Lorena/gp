@@ -11,14 +11,4 @@ public class Edje
 	public String toString() {
 		return "town " + goalTown + " is " + distance ;
 	}
-
-	public Town getGoalTown() {
-		return goalTown;
-	}
-
-	public double getDistance() {
-		return distance;
-	}
-
-	
 }

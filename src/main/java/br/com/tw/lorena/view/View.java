@@ -57,7 +57,7 @@ public class View {
 
 	private void showRouteByTown(Town town) throws IOException {
 		Printer.printFromRoute(town.toString());
-	    for(Edje r : town.adjacencies)
+	    for(Edje r : town.getAdjacencies())
 	    	Printer.printToRoute(r.toString());
 	}
 
@@ -88,9 +88,9 @@ public class View {
 	}
 
 	private Town getTown(String node){
-		for(Town t : Graph.townsGraph){
-			if(node.equals(t.name))
-				return t;
+		for(Town town : Graph.townsGraph){
+			if(node.equals(town.getName()))
+				return town;
 		}
 		return null;
 	}

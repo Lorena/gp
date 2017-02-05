@@ -47,23 +47,19 @@ public class Menu {
 	public void executeMenuOption(int option, List<Town> towns) throws IOException {
 
 		if (option == 1){
-
 			calculaterPathBetweenTwoNodesAlgorithms.setTowns(towns);
 			calculaterPathBetweenTwoNodesAlgorithms.execute();
 
 		} else if (option == 2) {
-
 			dijkistraAlgorithms.setTowns(towns);
 			dijkistraAlgorithms.execute();
 		}
 		else if (option == 3){
-
 			deephtSearchLimitedAlgorithms.setTowns(towns);
 			deephtSearchLimitedAlgorithms.setConditionChoice("stop");
 			deephtSearchLimitedAlgorithms.execute();
 
 		} else if (option == 4) {
-
 			deephtSearchLimitedAlgorithms.setTowns(towns);
 			deephtSearchLimitedAlgorithms.setConditionChoice("dist");
 			deephtSearchLimitedAlgorithms.execute();

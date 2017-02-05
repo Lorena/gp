@@ -14,64 +14,51 @@ import java.util.List;
  * */
 
 public class Validator {
-	
-		private Validator() {
-		  
-		}  
 
-		public static boolean isTown(String town){
-			for(Town t : Graph.townsGraph){
-				if(town.equals(t.name))
-					return true;
-			}
-			return false;
-		}
-		
-		private static boolean hasNumberCondition (String number) throws IOException {
-			
-			for (int i = 0; i < number.length(); i++) {
-			        if (!Character.isDigit(number.charAt(i)))
-			        {
-			           Printer.printEnterWithNumber();
-			            return false;
-			        }
-			      }
+	public static boolean checkRouteValidation(List<Town> route, List<Double> valuesOfRoute){
+		if(route.size() == (valuesOfRoute.size()+1))
 			return true;
-		}
-	
-		public static boolean isCodition(String condition, String distanceStop) throws IOException {
-		
-			String clause = condition.substring(0, 5);
-			String number = condition.substring(5);
-			
-				if(clause.contains(distanceStop+"<") && hasNumberCondition(number))
-					return true;
-				else if (clause.contains(distanceStop+"=") && hasNumberCondition(number))
-					return true;
-				else if (clause.contains(distanceStop+">") && hasNumberCondition(number))
-					return true;
-				else 
-				return false;
-				
-		}
-		
-		public static boolean isRoute(String route){
-	
-			for (String s : route.split("-")) {
-					if(isTown(s))
-						return true;
-			}
-			return false;
-				
-		}
-		
-		public static boolean checkRouteValidation(List<Town> route, List<Double> valuesOfRoute){  	
-			if(route.size() == (valuesOfRoute.size()+1))
-				return true;
-			return false;
-	
-		}
-		
-		
+		return false;
+	}
 
+	public static boolean isRoute(String route){
+		for (String s : route.split("-")) {
+			if(isTown(s))
+				return true;
+		}
+		return false;
+	}
+
+	public static boolean isCodition(String condition, String distanceStop) throws IOException {
+		String clause = condition.substring(0, 5);
+		String number = condition.substring(5);
+
+		if(clause.contains(distanceStop+"<") && hasNumberCondition(number))
+			return true;
+		else if (clause.contains(distanceStop+"=") && hasNumberCondition(number))
+			return true;
+		else if (clause.contains(distanceStop+">") && hasNumberCondition(number))
+			return true;
+		else
+			return false;
+	}
+
+	private static boolean isTown(String town){
+		for(Town t : Graph.townsGraph){
+			if(town.equals(t.getName()))
+				return true;
+		}
+		return false;
+	}
+
+	private static boolean hasNumberCondition (String number) throws IOException {
+		for (int i = 0; i < number.length(); i++) {
+			if (!Character.isDigit(number.charAt(i)))
+			{
+				Printer.printEnterWithNumber();
+				return false;
+			}
+		}
+		return true;
+	}
 }

@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Stack;
 
 /*
- * Classe que contém todas os tipos de outputs*/
+ * Classe que contém todas os outputs*/
 
 
 public class Printer {
@@ -19,12 +19,10 @@ public class Printer {
 
 	public static void printFromRoute(String str) throws IOException {
 		System.out.println(ResourseProperty.getProperty("from")+ " " + str);
-	    
 	}
 	
 	public static void printToRoute(String str) throws IOException {
 		System.out.println(ResourseProperty.getProperty("to") + " " + str);
-	    
 	}
 	
 	public void printMenu() throws IOException {
@@ -38,7 +36,6 @@ public class Printer {
 	
 	public static void printEnterWithNumber() throws IOException {
 		 System.out.println(ResourseProperty.getProperty("must_enter_with_number"));
-	    
 	}
 	
 	public static void printNoSuchRouteTwoTowns(Town townStart, Town townGoal) throws IOException {
@@ -46,7 +43,7 @@ public class Printer {
 	}
 	
 	public static void printShortestRouteBetweenTwoTowns(Town townStart, Town townGoal, List<Town> path) throws IOException {
-		System.out.println(ResourseProperty.getProperty("distance_from")+ " " + townStart + " to "+ townGoal + " is " + townGoal.minDistance);
+		System.out.println(ResourseProperty.getProperty("distance_from")+ " " + townStart + " to "+ townGoal + " is " + townGoal.getMinDistance());
         System.out.println(ResourseProperty.getProperty("shortest_route")+ " " + townStart + " to " + townGoal + " is " + path);
     }
 	

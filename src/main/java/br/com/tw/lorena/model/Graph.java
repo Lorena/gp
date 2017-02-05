@@ -48,7 +48,7 @@ public class Graph {
 				Town startTown = getTown(startTownName);
 				Town goalTown = getTown(goalTownName);
 				
-				startTown.adjacencies.add(new Edje(goalTown, distance));
+				startTown.getAdjacencies().add(new Edje(goalTown, distance));
 				
 			}
 		}
