@@ -48,7 +48,7 @@ public class MenuTest {
         assertEquals(option, 1);
     }
 
-    @Test
+    @Test(expected = IOException.class)
     public void shouldExitOfProgram() throws IOException {
         int option = menu.getMenuOption("A");
         assertEquals(option, 5);
@@ -58,7 +58,7 @@ public class MenuTest {
     public void shouldExecuteMenuOptionOne() throws IOException {
         Town townA = new Town("A");
         Town townB = new Town("B");
-        menu.executeMenuOption(1, Arrays.asList(townA, townB));
+        menu.executeMenuOption(1, null, Arrays.asList(townA, townB));
         verify(calculaterPathBetweenTwoNodesAlgorithms, times(1)).setTowns(Arrays.asList(townA, townB));
         verify(calculaterPathBetweenTwoNodesAlgorithms, times(1)).execute();
     }
@@ -67,7 +67,7 @@ public class MenuTest {
     public void shouldExecuteMenuOptionTwo() throws IOException {
         Town townA = new Town("A");
         Town townB = new Town("B");
-        menu.executeMenuOption(2, Arrays.asList(townA, townB));
+        menu.executeMenuOption(2, null, Arrays.asList(townA, townB));
         verify(dijkistraAlgorithms, times(1)).setTowns(Arrays.asList(townA, townB));
         verify(dijkistraAlgorithms, times(1)).execute();
     }
@@ -76,9 +76,9 @@ public class MenuTest {
     public void shouldExecuteMenuOptionThree() throws IOException {
         Town townA = new Town("A");
         Town townB = new Town("B");
-        menu.executeMenuOption(3, Arrays.asList(townA, townB));
+        menu.executeMenuOption(3, "stop < 3" , Arrays.asList(townA, townB));
         verify(deephtSearchLimitedAlgorithms, times(1)).setTowns(Arrays.asList(townA, townB));
-        verify(deephtSearchLimitedAlgorithms, times(1)).setConditionChoice("stop");
+        verify(deephtSearchLimitedAlgorithms, times(1)).setCondition("stop < 3");
         verify(deephtSearchLimitedAlgorithms, times(1)).execute();
     }
 
@@ -87,9 +87,9 @@ public class MenuTest {
         Town townA = new Town("A");
         Town townB = new Town("B");
         Town townC = new Town("C");
-        menu.executeMenuOption(4, Arrays.asList(townA, townB, townC));
+        menu.executeMenuOption(4, "dist < 4", Arrays.asList(townA, townB, townC));
         verify(deephtSearchLimitedAlgorithms, times(1)).setTowns(Arrays.asList(townA, townB, townC));
-        verify(deephtSearchLimitedAlgorithms, times(1)).setConditionChoice("dist");
+        verify(deephtSearchLimitedAlgorithms, times(1)).setCondition("dist < 4");
         verify(deephtSearchLimitedAlgorithms, times(1)).execute();
     }
 }

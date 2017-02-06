@@ -20,35 +20,35 @@ public class CalculaterPathBetweenTwoNodesAlgorithms {
 		calculateDistanceOfTowns(towns);
 	}
 	
-	private void calculateDistanceOfTowns(List<Town> town) throws IOException {
-		if(Validator.checkRouteValidation(town, getValueOfRoute(town)))
-			Printer.printDistanceOfTowns(getFinalDistanceOfTowns(town));
+	private void calculateDistanceOfTowns(List<Town> towns) throws IOException {
+		if(Validator.checkRouteValidation(towns, getValueOfRoutes(towns)))
+			Printer.printDistanceOfTowns(getFinalDistanceOfTowns(towns));
 		else
 			Printer.printNoRouch();
 	}
 
-	private List<Double> getValueOfRoute(List<Town> route){
-		List<Double> routeValue = new ArrayList<Double>();
-    	Town previous = route.get(0);
-		for (Town next : route){
-			for(Edje r : previous.getAdjacencies()){
-				if(r.goalTown.equals(next)){
-					routeValue.add(new Double(r.distance));
+	private List<Double> getValueOfRoutes(List<Town> routes){
+		List<Double> routeValues = new ArrayList<Double>();
+    	Town previousTown = routes.get(0);
+		for (Town nextTown : routes){
+			for(Edje edje : previousTown.getAdjacencies()){
+				if(edje.goalTown.equals(nextTown)){
+					routeValues.add(new Double(edje.distance));
 					break;
 					}
 				}
-			previous = next;
+			previousTown = nextTown;
 		}
-		return routeValue;
+		return routeValues;
 	}
 
-	private double getFinalDistanceOfTowns(List<Town> town){
-		double value = 0.0;
-		List<Double> valueOfRoute = getValueOfRoute(town);
-		if(Validator.checkRouteValidation(town, valueOfRoute)){
-			for(Double v : valueOfRoute)
-				value += v.doubleValue();
+	private double getFinalDistanceOfTowns(List<Town> towns){
+		double finalDistance = 0.0;
+		List<Double> valueOfRoutes = getValueOfRoutes(towns);
+		if(Validator.checkRouteValidation(towns, valueOfRoutes)){
+			for(Double valueOfRoute : valueOfRoutes)
+				finalDistance += valueOfRoute.doubleValue();
 		}
-		return value;
+		return finalDistance;
 	}
 }

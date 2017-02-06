@@ -29,18 +29,19 @@ public class Validator {
 		return false;
 	}
 
-	public static boolean isCodition(String condition, String distanceStop) throws IOException {
+	public static boolean isCodition(String condition) throws IOException {
 		String clause = condition.substring(0, 5);
 		String number = condition.substring(5);
 
-		if(clause.contains(distanceStop+"<") && hasNumberCondition(number))
-			return true;
-		else if (clause.contains(distanceStop+"=") && hasNumberCondition(number))
-			return true;
-		else if (clause.contains(distanceStop+">") && hasNumberCondition(number))
-			return true;
-		else
-			return false;
+		if(clause.contains("dist") || clause.contains("stop")) {
+			if (clause.contains("<") && hasNumberCondition(number))
+				return true;
+			else if (clause.contains("=") && hasNumberCondition(number))
+				return true;
+			else if (clause.contains(">") && hasNumberCondition(number))
+				return true;
+		}
+		return false;
 	}
 
 	private static boolean isTown(String town){

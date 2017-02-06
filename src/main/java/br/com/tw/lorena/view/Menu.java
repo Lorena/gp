@@ -3,9 +3,12 @@ package br.com.tw.lorena.view;
 import br.com.tw.lorena.controller.CalculaterPathBetweenTwoNodesAlgorithms;
 import br.com.tw.lorena.controller.DeephtSearchLimitedAlgorithms;
 import br.com.tw.lorena.controller.DijkistraAlgorithms;
+import br.com.tw.lorena.controller.Validator;
 import br.com.tw.lorena.model.Town;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.List;
 
 /*
@@ -39,12 +42,16 @@ public class Menu {
 			op = Integer.parseInt(option);
 		} catch (NumberFormatException e) {
 			Printer.printErrEnterWithNumber();
-			op = 5;
 		}
+
+		if(op != 1 && op != 2 && op !=3 && op !=4){
+			throw new IOException("Invalid option.");
+		}
+		
 		return op;
 	}
 
-	public void executeMenuOption(int option, List<Town> towns) throws IOException {
+	public void executeMenuOption(int option, String condition, List<Town> towns) throws IOException {
 
 		if (option == 1){
 			calculaterPathBetweenTwoNodesAlgorithms.setTowns(towns);
@@ -56,14 +63,16 @@ public class Menu {
 		}
 		else if (option == 3){
 			deephtSearchLimitedAlgorithms.setTowns(towns);
-			deephtSearchLimitedAlgorithms.setConditionChoice("stop");
+			deephtSearchLimitedAlgorithms.setCondition(condition);
 			deephtSearchLimitedAlgorithms.execute();
 
 		} else if (option == 4) {
 			deephtSearchLimitedAlgorithms.setTowns(towns);
-			deephtSearchLimitedAlgorithms.setConditionChoice("dist");
+			deephtSearchLimitedAlgorithms.setCondition(condition);
 			deephtSearchLimitedAlgorithms.execute();
 
 		}
 	}
+
+
 }

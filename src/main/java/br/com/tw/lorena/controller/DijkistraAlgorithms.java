@@ -19,15 +19,13 @@ public class DijkistraAlgorithms {
 	}
 
     private void calculateLengthShortestRouteBetweenTwoTowns(Town startTown, Town goalTown) throws IOException {
-        Town townStart = startTown;
-        Town townGoal = goalTown;
-        computePathsByDijkstra(townStart);
-        List<Town> path = getShortestPathTo(townGoal);
+        computePathsByDijkstra(startTown);
+        List<Town> path = getShortestPathTo(goalTown);
 
-        if(path.get(0).equals(townGoal) && townGoal.getMinDistance() != 0)
-            Printer.printNoSuchRouteTwoTowns(townStart, townGoal);
+        if(path.get(0).equals(goalTown) && goalTown.getMinDistance() != 0)
+            Printer.printNoSuchRouteTwoTowns(startTown, goalTown);
         else
-            Printer.printShortestRouteBetweenTwoTowns(townStart, townGoal, path);
+            Printer.printShortestRouteBetweenTwoTowns(startTown, goalTown, path);
     }
 	
 
@@ -37,17 +35,17 @@ public class DijkistraAlgorithms {
         townQueue.add(startTown);
 
         while (!townQueue.isEmpty()) {
-        	Town u = townQueue.poll();
-        	for (Edje e : u.getAdjacencies())
+        	Town town = townQueue.poll();
+        	for (Edje edje : town.getAdjacencies())
             {
-            	Town v = e.goalTown;
-                double distance = e.distance;
-                double distanceThroughU = u.getMinDistance() + distance;
-        if (distanceThroughU < v.getMinDistance()) {
-            townQueue.remove(v);
-            v.setMinDistance(distanceThroughU);
-            v.setPrevious(u);
-            townQueue.add(v);
+            	Town town1 = edje.goalTown;
+                double distance = edje.distance;
+                double distanceThroughU = town.getMinDistance() + distance;
+        if (distanceThroughU < town1.getMinDistance()) {
+            townQueue.remove(town1);
+            town1.setMinDistance(distanceThroughU);
+            town1.setPrevious(town);
+            townQueue.add(town1);
         }
             }
         }
