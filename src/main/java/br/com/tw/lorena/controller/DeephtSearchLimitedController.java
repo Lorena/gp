@@ -9,17 +9,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-public class DeephtSearchLimitedAlgorithms {
+public class DeephtSearchLimitedController implements AlgorithmInterface {
 
 	private Stack<Town> townsStack = new Stack<Town>();
 	private  ArrayList<Town> visitedTowns = new ArrayList<Town>();
 	private List<Town> towns;
 	private String condition;
 	private int numberOfTrips = 0;
+	private final int OPTION = 3;
 
 	public void execute() throws IOException {
     	showTheNumberOfTripsBetweenTownsWithCondition(towns, condition);
 	}
+
 	private void showTheNumberOfTripsBetweenTownsWithCondition(List<Town> town, String signal) throws IOException {
 		computerAllPathsDepthLimitedSearchWithCondition(town.get(0), town.get(1), signal);
 		numberOfTrips--;
@@ -28,7 +30,6 @@ public class DeephtSearchLimitedAlgorithms {
 		visitedTowns.clear();
 		townsStack.clear();
 	}
-
 	private void computerAllPathsDepthLimitedSearchWithCondition(Town startTown, Town goalTown, String signal){
 		townsStack.add(startTown);
 		visitedTowns.add(startTown);
@@ -99,7 +100,6 @@ public class DeephtSearchLimitedAlgorithms {
 		return finalDistance;
 	}
 
-
 	private List<Double> getValueOfRoute(List<Town> route){
 		List<Double> routeValue = new ArrayList<Double>();
 		Town previous = route.get(0);
@@ -115,11 +115,16 @@ public class DeephtSearchLimitedAlgorithms {
 		return routeValue;
 	}
 
+
 	public void setCondition(String condition) {
 		this.condition = condition;
 	}
 
 	public void setTowns(List<Town> towns) {
 		this.towns = towns;
+	}
+
+	public int getOption() {
+		return OPTION;
 	}
 }

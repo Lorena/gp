@@ -15,13 +15,7 @@ import java.util.List;
 
 public class Validator {
 
-	public static boolean checkRouteValidation(List<Town> route, List<Double> valuesOfRoute){
-		if(route.size() == (valuesOfRoute.size()+1))
-			return true;
-		return false;
-	}
-
-	public static boolean isRoute(String route){
+	public static boolean isRoutes(String route){
 		for (String s : route.split("-")) {
 			if(isTown(s))
 				return true;
@@ -29,20 +23,29 @@ public class Validator {
 		return false;
 	}
 
-	public static boolean isCodition(String condition) throws IOException {
-		String clause = condition.substring(0, 5);
-		String number = condition.substring(5);
+    public static boolean isCodition(String condition) throws IOException {
+        if(condition == null)
+        	return false;
 
-		if(clause.contains("dist") || clause.contains("stop")) {
-			if (clause.contains("<") && hasNumberCondition(number))
-				return true;
-			else if (clause.contains("=") && hasNumberCondition(number))
-				return true;
-			else if (clause.contains(">") && hasNumberCondition(number))
-				return true;
-		}
-		return false;
-	}
+		String clause = condition.substring(0, 5);
+        String number = condition.substring(5);
+
+        if(clause.contains("dist") || clause.contains("stop")) {
+            if (clause.contains("<") && hasNumberCondition(number))
+                return true;
+            else if (clause.contains("=") && hasNumberCondition(number))
+                return true;
+            else if (clause.contains(">") && hasNumberCondition(number))
+                return true;
+        }
+        return false;
+    }
+
+    public static boolean checkRouteValidation(List<Town> route, List<Double> valuesOfRoute){
+        if(route.size() == (valuesOfRoute.size()+1))
+            return true;
+        return false;
+    }
 
 	private static boolean isTown(String town){
 		for(Town t : Graph.townsGraph){

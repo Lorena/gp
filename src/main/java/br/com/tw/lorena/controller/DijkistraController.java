@@ -10,11 +10,16 @@ import java.util.Collections;
 import java.util.List;
 import java.util.PriorityQueue;
 
-public class DijkistraAlgorithms {
+public class DijkistraController implements AlgorithmInterface {
 
     private List<Town> towns;
+    public final int OPTIONS = 2;
 
-	public void execute() throws IOException {
+    public int getOption() {
+        return OPTIONS;
+    }
+
+    public void execute() throws IOException {
 		calculateLengthShortestRouteBetweenTwoTowns(towns.get(0), towns.get(1));
 	}
 
@@ -61,5 +66,9 @@ public class DijkistraAlgorithms {
 
     public void setTowns(List<Town> towns) {
         this.towns = towns;
+    }
+
+    public void setCondition(String condition) {
+
     }
 }

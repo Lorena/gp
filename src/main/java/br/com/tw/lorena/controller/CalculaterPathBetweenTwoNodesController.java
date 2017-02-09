@@ -8,18 +8,16 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CalculaterPathBetweenTwoNodesAlgorithms {
+public class CalculaterPathBetweenTwoNodesController implements AlgorithmInterface{
 
 	private List<Town> towns;
-
-	public void setTowns(List<Town> towns) {
-		this.towns = towns;
-	}
+	public final int OPTIONS = 1;
+	public String condition;
 
 	public void execute() throws IOException {
 		calculateDistanceOfTowns(towns);
 	}
-	
+
 	private void calculateDistanceOfTowns(List<Town> towns) throws IOException {
 		if(Validator.checkRouteValidation(towns, getValueOfRoutes(towns)))
 			Printer.printDistanceOfTowns(getFinalDistanceOfTowns(towns));
@@ -50,5 +48,17 @@ public class CalculaterPathBetweenTwoNodesAlgorithms {
 				finalDistance += valueOfRoute.doubleValue();
 		}
 		return finalDistance;
+	}
+
+	public int getOption() {
+		return OPTIONS;
+	}
+
+	public void setTowns(List<Town> towns) {
+		this.towns = towns;
+	}
+
+	public void setCondition(String condition) {
+		this.condition = condition;
 	}
 }
