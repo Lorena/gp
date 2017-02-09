@@ -15,6 +15,7 @@ import java.util.Arrays;
 
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class MenuTest {
@@ -44,6 +45,7 @@ public class MenuTest {
     public void shouldExecuteMenuOptionOne() throws IOException {
         Town townA = new Town("A");
         Town townB = new Town("B");
+        when(calculaterPathBetweenTwoNodesController.getOption()).thenReturn(1);
         menu.executeMenuOption(new Input(1, Arrays.asList(townA, townB), null));
         verify(calculaterPathBetweenTwoNodesController, times(1)).setTowns(Arrays.asList(townA, townB));
         verify(calculaterPathBetweenTwoNodesController, times(1)).execute();
@@ -53,6 +55,7 @@ public class MenuTest {
     public void shouldExecuteMenuOptionTwo() throws IOException {
         Town townA = new Town("A");
         Town townB = new Town("B");
+        when(dijkistraController.getOption()).thenReturn(2);
         menu.executeMenuOption(new Input(2, Arrays.asList(townA, townB), null));
         verify(dijkistraController, times(1)).setTowns(Arrays.asList(townA, townB));
         verify(dijkistraController, times(1)).execute();
@@ -62,6 +65,7 @@ public class MenuTest {
     public void shouldExecuteMenuOptionThree() throws IOException {
         Town townA = new Town("A");
         Town townB = new Town("B");
+        when(deephtSearchLimitedController.getOption()).thenReturn(3);
         menu.executeMenuOption(new Input(3, Arrays.asList(townA, townB), "stop < 3"));
         verify(deephtSearchLimitedController, times(1)).setTowns(Arrays.asList(townA, townB));
         verify(deephtSearchLimitedController, times(1)).setCondition("stop < 3");
@@ -73,6 +77,7 @@ public class MenuTest {
         Town townA = new Town("A");
         Town townB = new Town("B");
         Town townC = new Town("C");
+        when(deephtSearchLimitedController.getOption()).thenReturn(4);
         menu.executeMenuOption(new Input(4, Arrays.asList(townA, townB, townC), "dist < 4"));
         verify(deephtSearchLimitedController, times(1)).setTowns(Arrays.asList(townA, townB, townC));
         verify(deephtSearchLimitedController, times(1)).setCondition("dist < 4");
